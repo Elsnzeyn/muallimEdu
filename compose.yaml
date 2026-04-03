@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: muallim_edu_az
+      MYSQL_USER: muallim_user
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: root123
+    ports:
+      - "3307:3306"
+
+  app:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/muallim_edu_az
+      SPRING_DATASOURCE_USERNAME: muallim_user
+      SPRING_DATASOURCE_PASSWORD: 1234
+    depends_on:
+      - db
+
+
+
